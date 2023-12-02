@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoServer.Net", "src\GeoServer.Net\GeoServer.Net.csproj", "{FFFBE134-B411-439C-9B06-0580A261CFD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDE9678A-A3B8-489A-9559-3E1CCFB5E1E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F6F66F4D-A0D3-4D09-9590-027DEBB7321A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServer.Net.Tests", "test\GeoServer.Net.Tests\GeoServer.Net.Tests.csproj", "{3964813D-42DD-4DD1-BF8F-02B153460E22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74CC736A-110C-46D4-AC52-90A9CC701B6F}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFFBE134-B411-439C-9B06-0580A261CFD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFFBE134-B411-439C-9B06-0580A261CFD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFFBE134-B411-439C-9B06-0580A261CFD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFFBE134-B411-439C-9B06-0580A261CFD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3964813D-42DD-4DD1-BF8F-02B153460E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3964813D-42DD-4DD1-BF8F-02B153460E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3964813D-42DD-4DD1-BF8F-02B153460E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3964813D-42DD-4DD1-BF8F-02B153460E22}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FFFBE134-B411-439C-9B06-0580A261CFD4} = {EDE9678A-A3B8-489A-9559-3E1CCFB5E1E5}
+		{3964813D-42DD-4DD1-BF8F-02B153460E22} = {F6F66F4D-A0D3-4D09-9590-027DEBB7321A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79ADD1A3-B69D-4589-A7B5-4FD1AC02A17A}
+	EndGlobalSection
+EndGlobal
