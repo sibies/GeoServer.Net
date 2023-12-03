@@ -5,16 +5,22 @@ using GeoServer.Net.Constants;
 using GeoServer.Net.Contracts;
 using GeoServer.Net.Exceptions;
 using GeoServer.Net.Responses.About;
+using GeoServer.Net.Responses.Fonts;
 using GeoServer.Net.Responses.Layers;
 
 namespace GeoServer.Net;
 
 /// <summary>
-/// https://docs.geoserver.org/stable/en/user/rest/about.html
+/// https://docs.geoserver.org/stable/en/user/rest/index.html
 /// </summary>
 public class GeoServerClient: HttpClient, IGeoServerClient
 {
     private readonly string _url;
+
+    public GeoServerClient(string url)
+        :this(url,string.Empty,string.Empty)
+    {
+    }
 
     public GeoServerClient(string url, string username, string password)
     {
@@ -24,11 +30,13 @@ public class GeoServerClient: HttpClient, IGeoServerClient
         DefaultRequestHeaders.Clear();
         DefaultRequestHeaders.ConnectionClose = true;
 
-        var authenticationString = $"{username}:{password}";
-        var base64EncodedAuthenticationString = Convert.ToBase64String(Encoding.UTF8.GetBytes(authenticationString));
+        if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
+        {
+            var authenticationString = $"{username}:{password}";
+            var base64EncodedAuthenticationString = Convert.ToBase64String(Encoding.UTF8.GetBytes(authenticationString));
 
-        DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
-
+            DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
+        }
     }
 
     /// <summary>
@@ -69,6 +77,15 @@ public class GeoServerClient: HttpClient, IGeoServerClient
         if (!response.IsSuccessStatusCode) throw new GeoServerHttpRequestException(response.StatusCode.ToString());
         //var result = await response.Content.ReadAsStringAsync();
         var result = await response.Content.ReadFromJsonAsync<GeoServerLayersListResponse>();
+        return result;
+    }
+
+    public async Task<GeoServerFontsListResponse> GetFontsListAsync()
+    {
+        var response = await GetAsync(_url + ApiConsts.Endpoints.Fonts.GetFontsApiPath);
+        if (!response.IsSuccessStatusCode) throw new GeoServerHttpRequestException(response.StatusCode.ToString());
+        //var result = await response.Content.ReadAsStringAsync();
+        var result = await response.Content.ReadFromJsonAsync<GeoServerFontsListResponse>();
         return result;
     }
 }

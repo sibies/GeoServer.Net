@@ -1,7 +1,7 @@
 using FluentAssertions;
 using GeoServer.Net.Contracts;
 
-namespace GeoServer.Net.Tests;
+namespace GeoServer.Net.Tests.EndpointsTests;
 
 public class AboutEndpointsTests
 {

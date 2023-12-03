@@ -1,3 +1,3 @@
 ﻿namespace GeoServer.Net.Contracts;
 
-public interface IGeoServerClient: IGeoServerAboutClient, IGeoServerLayersClient;
+public interface IGeoServerClient : IGeoServerAboutClient, IGeoServerLayersClient, IGeoServerFontClient;
