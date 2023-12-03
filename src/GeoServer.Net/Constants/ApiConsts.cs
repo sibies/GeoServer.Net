@@ -29,10 +29,18 @@ public static class ApiConsts
             public const string GetLayersApiPath = BaseLayersApiPath + OutputFormat;
 
         }
+
         public static class Fonts
         {
             public const string BaseFontsApiPath = BaseApiPath + "/fonts";
             public const string GetFontsApiPath = BaseFontsApiPath + OutputFormat;
+
+        }
+
+        public static class Namespaces
+        {
+            public const string BaseNamespacesApiPath = BaseApiPath + "/namespaces";
+            public const string GetNamespacesApiPath = BaseNamespacesApiPath + OutputFormat;
 
         }
     }
