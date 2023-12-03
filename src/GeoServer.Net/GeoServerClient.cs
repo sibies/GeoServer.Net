@@ -8,11 +8,13 @@ using GeoServer.Net.Responses.About;
 using GeoServer.Net.Responses.Fonts;
 using GeoServer.Net.Responses.Layers;
 using GeoServer.Net.Responses.Namespaces;
+using GeoServer.Net.Responses.Styles;
 
 namespace GeoServer.Net;
 
 /// <summary>
 /// https://docs.geoserver.org/stable/en/user/rest/index.html
+/// https://docs.geoserver.org/stable/en/user/rest/api/index.html
 /// </summary>
 public class GeoServerClient: HttpClient, IGeoServerClient
 {
@@ -31,13 +33,20 @@ public class GeoServerClient: HttpClient, IGeoServerClient
         DefaultRequestHeaders.Clear();
         DefaultRequestHeaders.ConnectionClose = true;
 
+        //https://docs.geoserver.org/stable/en/user/rest/api/details.html
+        DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
         if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
         {
-            var authenticationString = $"{username}:{password}";
-            var base64EncodedAuthenticationString = Convert.ToBase64String(Encoding.UTF8.GetBytes(authenticationString));
-
-            DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
+            Autentificate(username, password);
         }
+    }
+
+    private void Autentificate(string username, string password)
+    {
+        var authenticationString = $"{username}:{password}";
+        var base64EncodedAuthenticationString = Convert.ToBase64String(Encoding.UTF8.GetBytes(authenticationString));
+        DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", base64EncodedAuthenticationString);
     }
 
     private async Task<TResponse> GetAsync<TResponse>(string apiEndpoint)
@@ -49,11 +58,6 @@ public class GeoServerClient: HttpClient, IGeoServerClient
         return result;
     }
 
-    /// <summary>
-    /// Retrieve the versions of the main components: GeoServer, GeoTools, and GeoWebCache
-    /// https://docs.geoserver.org/stable/en/user/rest/about.html
-    /// </summary>
-    /// <returns></returns>
     public Task<GeoServerAboutVersionResponse> GetVersionAsync() =>
         GetAsync<GeoServerAboutVersionResponse>(ApiConsts.Endpoints.About.VersionApiPath);
 
@@ -71,4 +75,7 @@ public class GeoServerClient: HttpClient, IGeoServerClient
 
     public Task<GeoServerNamespacesListResponse> GetNamespacesListAsync() =>
         GetAsync<GeoServerNamespacesListResponse>(ApiConsts.Endpoints.Namespaces.GetNamespacesApiPath);
+
+    public Task<GeoServerStylesListResponse> GetStylesListAsync() =>
+        GetAsync<GeoServerStylesListResponse>(ApiConsts.Endpoints.Styles.GetStylesApiPath);
 }

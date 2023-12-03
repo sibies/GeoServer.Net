@@ -43,6 +43,12 @@ public static class ApiConsts
             public const string GetNamespacesApiPath = BaseNamespacesApiPath + OutputFormat;
 
         }
-    }
 
+        public static class Styles
+        {
+            public const string BaseStylesApiPath = BaseApiPath + "/styles";
+            public const string GetStylesApiPath = BaseStylesApiPath + OutputFormat;
+
+        }
+    }
 }
